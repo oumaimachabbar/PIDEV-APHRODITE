@@ -7,6 +7,7 @@ use App\Entity\Promotion;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,7 +23,7 @@ class ProduitType extends AbstractType
         $builder
             ->add('nom',TextType::class,[
                 'constraints'=>[
-                    new NotBlank(),
+                    new NotBlank(['message'=>'ce champ doit etre non vide']),
                     new Regex([
                         'pattern'=>'/^[a-zA-Z]+$/',
                         'message'=>'le nom doit etre des lettre seulement'
@@ -31,7 +32,8 @@ class ProduitType extends AbstractType
             ])
             ->add('quantite',NumberType::class,[
                 'constraints'=>[
-                    new NotBlank(),
+                                        new NotBlank(['message'=>'ce champ doit etre non vide']),
+
                     new Length([
                         'max'=>3
                     ])
@@ -39,7 +41,8 @@ class ProduitType extends AbstractType
             ])
             ->add('prix',NumberType::class,[
                 'constraints'=>[
-                    new NotBlank(),
+                                        new NotBlank(['message'=>'ce champ doit etre non vide']),
+
                     new Length([
                         'max'=>3
                     ])
@@ -54,7 +57,8 @@ class ProduitType extends AbstractType
             ])
             ->add('description',TextType::class,[
                 'constraints'=>[
-                    new NotBlank(),
+                                        new NotBlank(['message'=>'ce champ doit etre non vide']),
+
                 ]
             ])
             ->add('promo',EntityType::class, [
@@ -70,9 +74,23 @@ class ProduitType extends AbstractType
             ])
             ->add('image',TextType::class,[
                 'constraints'=>[
-                    new NotBlank(),
+                                        new NotBlank(['message'=>'ce champ doit etre non vide']),
+
                 ]
             ])
+           //color stats
+
+           ->add('color',ColorType::class,[
+               'constraints'=>[
+                   new NotBlank(['message'=>'ce champ doit etre non vide']),
+
+               ]
+           ])
+
+
+
+
+
         ;
     }
 

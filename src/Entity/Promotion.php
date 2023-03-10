@@ -22,6 +22,7 @@ class Promotion
     private ?\DateTimeImmutable $dateFinAt = null;
 
     #[ORM\Column]
+
     private ?int $pourcentage = null;
 
     #[ORM\OneToMany(mappedBy: 'promo', targetEntity: Produit::class)]

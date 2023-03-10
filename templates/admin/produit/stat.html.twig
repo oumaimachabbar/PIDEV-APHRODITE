@@ -1,0 +1,144 @@
+<main id="main" class="main">
+		<div class="row">
+			<div class="col-lg-6">
+
+				<div class="card">
+					<div class="card-body">
+						<h1 class="card-title">Statistiques des bilans par description</h1>
+
+						{% block content %}
+							{% if prodQuantite is empty %}
+								<p>Aucun nom .</p>
+							{% else %}
+								<canvas id="pieChart" style="max-height: 400px; display: block; box-sizing: border-box; height: 400px; width: 840.8px;" width="1051"></canvas>
+							{% endif %}
+						{% endblock %}
+
+						{% block javascript %}
+							{% if prodQuantite is not empty %}
+								<script>
+									document.addEventListener("DOMContentLoaded", () => {
+new Chart(document.querySelector('#pieChart'), {
+type: 'pie',
+data: {
+labels: {{ prodQuantite|json_encode|raw }},
+datasets: [
+{
+label: 'My First Dataset',
+data: {{ prodqunCount|json_encode|raw }},
+backgroundColor: {{ prodColor|json_encode|raw }},
+hoverOffset: 4
+}
+]
+}
+});
+});
+								</script>
+							{% endif %}
+						{% endblock %}
+					</div>
+
+				</div>
+			</div>
+			<div class="col-lg-6">
+
+				<div class="card">
+					<div class="card-body">
+						<h1 class="card-title">Statistiques des bilans par veterinaire
+						</h1>
+
+						{% block content2 %}
+							{% if BilansVetId is empty %}
+
+								<p>Aucune donnée disponible.</p>
+							{% else %}
+								<canvas id="barChart" style="max-height: 400px; display: block; box-sizing: border-box; height: 400px; width: 840.8px;" width="1051"></canvas>
+							{% endif %}
+						{% endblock %}
+
+						{% block javascript2 %}
+							{% if BilansVetId is not empty %}
+
+								<script>
+									document.addEventListener("DOMContentLoaded", () => {
+new Chart(document.querySelector('#barChart'), {
+type: 'bar',
+
+data: {
+labels: {{ BilansVetId|json_encode|raw }},
+
+datasets: [
+{
+label: 'My First Dataset',
+data: {{ BilansVetCount|json_encode|raw }},
+
+backgroundColor: {{ BilansVetColor|json_encode|raw }},
+
+options: {
+scales: {
+y: {
+beginAtZero: true
+}
+}
+}
+}
+]
+}
+});
+});
+								</script>
+							{% endif %}
+						{% endblock %}
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-lg-6">
+
+				<div class="card">
+					<div class="card-body">
+						<h1 class="card-title">Statistiques des reclamations par client
+						</h1>
+
+						{% block content3 %}
+							{% if ReclamationsClient is empty %}
+
+								<p>Aucune donnée disponible.</p>
+							{% else %}
+								<canvas id="doughnutChart" style="max-height: 400px; display: block; box-sizing: border-box; height: 400px; width: 840.8px;" width="1051"></canvas>
+							{% endif %}
+						{% endblock %}
+
+						{% block javascript3 %}
+							{% if ReclamationsClient is not empty %}
+
+								<script>
+									document.addEventListener("DOMContentLoaded", () => {
+new Chart(document.querySelector('#doughnutChart'), {
+type: 'doughnut',
+
+data: {
+labels: {{ ReclamationsClient|json_encode|raw }},
+datasets: [
+{
+label: 'My First Dataset',
+data: {{ ReclamationsCount|json_encode|raw }},
+
+backgroundColor: {{ ReclamationsColor|json_encode|raw }},
+
+hoverOffset: 4
+}
+]
+}
+});
+});
+								</script>
+							{% endif %}
+						{% endblock %}
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</main>

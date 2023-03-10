@@ -4,35 +4,67 @@ namespace App\Entity;
 
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups("produit")]
+
     private ?int $id = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Groups("produit")]
+
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups("produit")]
+
     private ?int $quantite = null;
 
     #[ORM\Column]
+    #[Groups("produit")]
+
     private ?float $prix = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups("produit")]
+
     private ?string $categorie = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups("produit")]
+
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
+    #[Groups("produit")]
+
+
+    /** @Ignore() */
+
     private ?Promotion $promo = null;
+    #[Ignore]
+    #[ORM\Column(length: 255)]
+    #[Groups("produit")]
+
+    private ?string $image = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    private ?string $lat = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $lon = null;
+
+    #[ORM\Column(length: 7, nullable: true)]
+    private ?string $color = null;
 
     public function getId(): ?int
     {
@@ -46,6 +78,7 @@ class Produit
 
     public function setNom(string $nom): self
     {
+
         $this->nom = $nom;
 
         return $this;
@@ -123,6 +156,42 @@ class Produit
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getLat(): ?string
+    {
+        return $this->lat;
+    }
+
+    public function setLat(string $lat): self
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    public function getLon(): ?string
+    {
+        return $this->lon;
+    }
+
+    public function setLon(string $lon): self
+    {
+        $this->lon = $lon;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): self
+    {
+        $this->color = $color;
 
         return $this;
     }

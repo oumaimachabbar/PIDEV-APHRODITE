@@ -16,18 +16,21 @@
 
                             </div>
 
-                            <h1> Produit</h1>
+                            <h1> Promotion</h1>
                             {{ form_start(form,{attr:{'novalidate':'novalidate'}}) }}
                             <div class="form-group">
                                 {{ form_label(form.dateDebutAt, 'Debut') }}
                                 {{ form_widget(form.dateDebutAt, { 'attr': {'class': 'form-control form-control-line'} }) }}
                                 {{ form_errors(form.dateDebutAt) }}
                             </div>
+                            <p style="color:red;">{{erreurDebut}}
                             <div class="form-group">
                                 {{ form_label(form.dateFinAt, 'Fin') }}
                                 {{ form_widget(form.dateFinAt, { 'attr': {'class': 'form-control form-control-line'} }) }}
                                 {{ form_errors(form.dateFinAt) }}
                             </div>
+                            <p style="color:red;">{{erreurFin}}
+
                             <div class="form-group">
                                 {{ form_label(form.pourcentage, 'pourcentage %') }}
                                 {{ form_widget(form.pourcentage, { 'attr': {'class': 'form-control form-control-line'} }) }}

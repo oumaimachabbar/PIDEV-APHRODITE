@@ -18,7 +18,7 @@ class PromotionType extends AbstractType
             ->add('dateFinAt')
             ->add('pourcentage',NumberType::class,[
                 'constraints'=>[
-                    new NotBlank(),
+                    new NotBlank(['message'=>'ce champ doit etre non vide']),
                     
                 ]
             ])
